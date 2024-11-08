@@ -4,3 +4,11 @@ part of 'register_bloc.dart';
 sealed class RegisterState {}
 
 final class RegisterInitial extends RegisterState {}
+
+final class RegisterSuccessState extends RegisterState {}
+
+final class RegisterErrorState extends RegisterState {
+  final String errorMsg;
+
+  RegisterErrorState({required this.errorMsg});
+}
