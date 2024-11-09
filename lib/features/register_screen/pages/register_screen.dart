@@ -1,22 +1,24 @@
 import 'dart:developer';
 
+import 'package:books/features/home_screen/widgets/book_grid.dart';
 import 'package:books/features/register_screen/bloc/register_bloc.dart';
 import 'package:books/features/register_screen/widgets/custom_icon_widget.dart';
 import 'package:books/features/register_screen/widgets/custom_snackbar.dart';
 import 'package:books/features/register_screen/widgets/custom_textfield.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 
 import '../../home_screen/pages/bottom_nav_screen.dart';
 
-class RegistrationForm extends StatefulWidget {
-  const RegistrationForm({super.key});
+class RegistrationFormPage extends StatefulWidget {
+  const RegistrationFormPage({super.key});
 
   @override
-  State<RegistrationForm> createState() => _RegistrationFormState();
+  State<RegistrationFormPage> createState() => _RegistrationFormPageState();
 }
 
-class _RegistrationFormState extends State<RegistrationForm> {
+class _RegistrationFormPageState extends State<RegistrationFormPage> {
   final _formKey = GlobalKey<FormState>();
   final TextEditingController _usernameController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
@@ -35,11 +37,8 @@ class _RegistrationFormState extends State<RegistrationForm> {
               showCustomSnackbar(context, state.errorMsg, false);
             } else if (state is RegisterSuccessState) {
               showCustomSnackbar(context, 'Registered Successfully');
-              Navigator.pushReplacement(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => const BottomNavScreen(),
-                  ));
+
+              context.replace('/bottomnav');
             }
           },
           child: Form(

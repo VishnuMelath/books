@@ -3,6 +3,7 @@ import 'package:books/features/home_screen/bloc/home_screen_bloc.dart';
 import 'package:books/features/register_screen/widgets/custom_snackbar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 
 class RatingBottomSheet extends StatefulWidget {
   final BookDetailsBloc bookDetailsBloc;
@@ -98,7 +99,7 @@ class _RatingBottomSheetState extends State<RatingBottomSheet> {
                       widget.bookDetailsBloc
                         ..rating = _rating
                         ..add(BookAddRatingEvent(rating: _rating));
-                      Navigator.pop(context, _rating);
+                      context.pop();
                     }
                   : () {
                       showCustomSnackbar(context,

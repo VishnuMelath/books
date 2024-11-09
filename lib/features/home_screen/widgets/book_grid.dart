@@ -2,18 +2,13 @@ import 'package:books/core/utils/avg_rating.dart';
 import 'package:books/data/datamodels/book_model.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:shimmer/shimmer.dart';
-
-import '../../book_details_screen/pages/book_details_page.dart';
 
 Widget bookGrid(BuildContext context, BookModel book) {
   return InkWell(
     onTap: () {
-      Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (context) => BookDetailPage(book: book),
-          ));
+      context.push('/bookdetails', extra: book);
     },
     child: Container(
       padding: const EdgeInsets.all(12),
@@ -40,7 +35,8 @@ Widget bookGrid(BuildContext context, BookModel book) {
           ))),
           Text(
             book.title,
-            overflow: TextOverflow.fade,
+            overflow: TextOverflow.ellipsis,
+            maxLines: 1,
             style: const TextStyle(fontSize: 11.5, fontWeight: FontWeight.w500),
           ),
           Text(

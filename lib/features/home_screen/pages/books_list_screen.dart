@@ -13,6 +13,7 @@ class BooksListScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    ScrollController controller = ScrollController();
     HomeScreenBloc homeScreenBloc = context.read<HomeScreenBloc>();
     return Scaffold(
       appBar: AppBar(
@@ -45,6 +46,7 @@ class BooksListScreen extends StatelessWidget {
               }
               return Expanded(
                 child: GridView.builder(
+                  controller: controller,
                   gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                       childAspectRatio: .7,
                       crossAxisCount: MediaQuery.sizeOf(context).width >

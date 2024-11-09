@@ -1,8 +1,7 @@
+import 'package:books/core/navigation/app_router.dart';
 import 'package:books/features/home_screen/bloc/home_screen_bloc.dart';
-import 'package:books/features/splash_screen/screens/splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
 import 'core/themes/app_theme.dart';
 
 void main() {
@@ -16,11 +15,11 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) => HomeScreenBloc(),
-      child: MaterialApp(
-        title: 'Flutter Demo',
+      child: MaterialApp.router(
+        routerConfig: AppRouter.router,
+        title: 'Books',
         theme: AppTheme.lightTheme,
-        // darkTheme: AppTheme.darkTheme,
-        home: const SplashScreen(),
+        // darkTheme: AppTheme.darkTheme, //its not complete
       ),
     );
   }

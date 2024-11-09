@@ -1,6 +1,8 @@
 import 'package:books/features/home_screen/bloc/home_screen_bloc.dart';
+import 'package:books/features/home_screen/widgets/book_grid.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 
 class RetryDialog extends StatelessWidget {
   final String message;
@@ -27,20 +29,10 @@ class RetryDialog extends StatelessWidget {
         style: const TextStyle(fontSize: 14),
       ),
       actions: [
-        // TextButton(
-        //   onPressed: () => Navigator.of(context).pop(),
-        //   child: const Text(
-        //     'NO',
-        //     style: TextStyle(
-        //       color: Colors.grey,
-        //       fontWeight: FontWeight.w500,
-        //     ),
-        //   ),
-        // ),
         TextButton(
           onPressed: () {
             onRetry();
-            Navigator.of(context).pop();
+            context.pop();
           },
           child: const Text(
             'Retry',

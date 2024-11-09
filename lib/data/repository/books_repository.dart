@@ -67,4 +67,19 @@ class BooksRepository {
       rethrow;
     }
   }
+
+  Future<BookModel> getBookById(String bookID) async {
+    try {
+      var responce = await http.get(
+        Uri.parse(
+          ApiEndpoints.getBookByIDEndPoint(bookID),
+        ),
+      );
+      log(responce.body.toString());
+      return BookModel.fromJson(jsonDecode(responce.body)['result']);
+    } catch (e) {
+      log(e.toString());
+      rethrow;
+    }
+  }
 }

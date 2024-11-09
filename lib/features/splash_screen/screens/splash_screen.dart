@@ -1,8 +1,10 @@
+import 'package:books/core/navigation/app_router.dart';
 import 'package:books/features/home_screen/pages/bottom_nav_screen.dart';
 import 'package:books/features/register_screen/pages/register_screen.dart';
 import 'package:books/features/register_screen/widgets/custom_icon_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 
 import '../bloc/splashscreen_bloc.dart';
 
@@ -23,13 +25,8 @@ class SplashScreen extends StatelessWidget {
           bloc: SplashscreenBloc()..add(SplashRegCheckingEvent()),
           listener: (context, state) {
             if (state is SplashScreenNaviagateState) {
-              Navigator.pushReplacement(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => state.route == 'reg'
-                        ? const RegistrationForm()
-                        : const BottomNavScreen(),
-                  ));
+              context.go(state.route == 'reg' ? '/registration' : '/bottomnav');
+              // context.go('/bottomnav');
             }
           },
           child: Center(

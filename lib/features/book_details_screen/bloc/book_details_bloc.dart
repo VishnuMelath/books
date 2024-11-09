@@ -22,7 +22,7 @@ class BookDetailsBloc extends Bloc<BookDetailsEvent, BookDetailsState> {
     log('event called');
     try {
       await BooksRepository().addRating(book.id, event.rating);
-
+      book = await BooksRepository().getBookById(book.id);
       emit(BookReviewAddedState());
     } on SocketException {
       emit(BookDetailsErrorState(

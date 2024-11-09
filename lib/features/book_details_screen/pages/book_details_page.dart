@@ -4,10 +4,13 @@ import 'package:books/core/themes/color_scemes.dart';
 import 'package:books/core/utils/avg_rating.dart';
 import 'package:books/data/datamodels/book_model.dart';
 import 'package:books/features/book_details_screen/widgets/custom_bottom_sheet.dart';
+import 'package:books/features/home_screen/bloc/home_screen_bloc.dart';
+import 'package:books/features/home_screen/widgets/book_grid.dart';
 import 'package:books/features/register_screen/widgets/custom_snackbar.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 
 import '../bloc/book_details_bloc.dart';
 
@@ -29,36 +32,39 @@ class BookDetailPage extends StatelessWidget {
             Icons.arrow_back_ios,
           ),
           onPressed: () {
-            Navigator.pop(context);
+            context.pop();
           },
         ),
       ),
-      body: BlocListener<BookDetailsBloc, BookDetailsState>(
+      body: BlocConsumer<BookDetailsBloc, BookDetailsState>(
         bloc: bookDetailsBloc,
         listener: (context, state) {
           if (state is BookDetailsErrorState) {
             showCustomSnackbar(context, state.errorMsg, false);
           } else if (state is BookReviewAddedState) {
             showCustomSnackbar(context, 'Review added succesfully');
+            context.read<HomeScreenBloc>().add(HomeScreenBooksLoadingEvent());
           }
         },
-        child: Stack(
-          children: [
-            SizedBox(
-              child: ListView(
-                children: [
-                  _buildProductImage(screenHeight, screenWidth),
-                  _buildProductDetails(),
-                  _buildProductDescription(),
-                ],
+        builder: (context, state) {
+          return Stack(
+            children: [
+              SizedBox(
+                child: ListView(
+                  children: [
+                    _buildProductImage(screenHeight, screenWidth),
+                    _buildProductDetails(),
+                    _buildProductDescription(),
+                  ],
+                ),
               ),
-            ),
-            Align(
-                alignment: Alignment.bottomCenter,
-                child: _buildPriceAndRating(
-                    screenWidth, context, bookDetailsBloc)),
-          ],
-        ),
+              Align(
+                  alignment: Alignment.bottomCenter,
+                  child: _buildPriceAndRating(
+                      screenWidth, context, bookDetailsBloc)),
+            ],
+          );
+        },
       ),
     );
   }

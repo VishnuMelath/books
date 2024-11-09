@@ -34,8 +34,16 @@ class BookModel {
         author: data['authorId'],
         rating: [
           ...data['ratings'].map((val) {
+            var value = val['rating'];
+            //made if's becuse api keeps changing the type
             log(val['rating'].runtimeType.toString());
-            return val['rating'].toDouble();
+            if (value.runtimeType == String) {
+              return double.parse(value);
+            } else if (value.runtimeType == int) {
+              return val['rating'].toDouble();
+            } else {
+              return val['rating'];
+            }
           })
         ],
         publishedDate: dateToMMDDYYConvert(data['publishedDate']));

@@ -8,4 +8,5 @@ class ApiEndpoints {
   static String getAuthorsListEndPoint = "$baseUrl/authors";
   static String addRatingEndPoint(String bookID) =>
       "$baseUrl/books/$bookID?ratings:add";
+  static String getBookByIDEndPoint(String bookID) => "$baseUrl/books/$bookID";
 }
