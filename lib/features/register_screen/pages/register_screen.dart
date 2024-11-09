@@ -1,6 +1,5 @@
 import 'dart:developer';
 
-import 'package:books/features/home_screen/widgets/book_grid.dart';
 import 'package:books/features/register_screen/bloc/register_bloc.dart';
 import 'package:books/features/register_screen/widgets/custom_icon_widget.dart';
 import 'package:books/features/register_screen/widgets/custom_snackbar.dart';
@@ -8,8 +7,6 @@ import 'package:books/features/register_screen/widgets/custom_textfield.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-
-import '../../home_screen/pages/bottom_nav_screen.dart';
 
 class RegistrationFormPage extends StatefulWidget {
   const RegistrationFormPage({super.key});

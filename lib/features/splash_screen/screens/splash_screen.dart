@@ -1,6 +1,3 @@
-import 'package:books/core/navigation/app_router.dart';
-import 'package:books/features/home_screen/pages/bottom_nav_screen.dart';
-import 'package:books/features/register_screen/pages/register_screen.dart';
 import 'package:books/features/register_screen/widgets/custom_icon_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';

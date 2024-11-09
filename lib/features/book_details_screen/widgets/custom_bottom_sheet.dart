@@ -1,8 +1,6 @@
 import 'package:books/features/book_details_screen/bloc/book_details_bloc.dart';
-import 'package:books/features/home_screen/bloc/home_screen_bloc.dart';
 import 'package:books/features/register_screen/widgets/custom_snackbar.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
 class RatingBottomSheet extends StatefulWidget {

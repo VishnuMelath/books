@@ -63,7 +63,7 @@ Widget bookGrid(BuildContext context, BookModel book) {
             ],
           ),
           Text(
-            '\$${book.price}',
+            '₹${book.price}',
             style: const TextStyle(fontSize: 13, fontWeight: FontWeight.w600),
           )
         ],

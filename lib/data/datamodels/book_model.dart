@@ -23,8 +23,6 @@ class BookModel {
       required this.publishedDate});
 
   factory BookModel.fromJson(Map<String, dynamic> data) {
-    log(data['ratings'].toString());
-    log(data['price'].runtimeType.toString());
     return BookModel(
         id: data['id'],
         title: data['title'],

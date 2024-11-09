@@ -49,19 +49,35 @@ class BooksRepository {
     }
   }
 
-  Future addRating(String bookID, int rating) async {
+  Future<BookModel> addRating(BookModel book, int rating) async {
     try {
       var jwtToken = await SharedPref.getToken();
       var header = {
+        'Content-Type': 'application/json',
         'Authorization': 'Bearer $jwtToken',
       };
+      log(jwtToken.toString());
+      var responce1 = await http.get(
+        Uri.parse(
+          ApiEndpoints.getBookByIDEndPoint(book.id),
+        ),
+      );
+      var result = jsonDecode(responce1.body);
+      List ratings = result['result']['ratings'];
+      ratings.add({'userId': '7f8da2e7e36b5415', 'rating': rating});
+      log(ratings.toString());
       var responce = await http.patch(
           Uri.parse(
-            ApiEndpoints.addRatingEndPoint(bookID),
+            ApiEndpoints.addRatingEndPoint(book.id),
           ),
           headers: header,
-          body: {'rating': rating.toString()});
+          body: jsonEncode({'ratings': ratings}));
       log(responce.body.toString());
+      if (responce.statusCode == 200) {
+        return BookModel.fromJson(jsonDecode(responce.body)['result']);
+      } else {
+        throw ('Somethings went wrong');
+      }
     } catch (e) {
       log(e.toString());
       rethrow;
@@ -75,7 +91,7 @@ class BooksRepository {
           ApiEndpoints.getBookByIDEndPoint(bookID),
         ),
       );
-      log(responce.body.toString());
+      // log(responce.body.toString());
       return BookModel.fromJson(jsonDecode(responce.body)['result']);
     } catch (e) {
       log(e.toString());

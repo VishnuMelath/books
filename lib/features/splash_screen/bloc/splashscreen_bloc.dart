@@ -14,6 +14,7 @@ class SplashscreenBloc extends Bloc<SplashscreenEvent, SplashscreenState> {
 
   FutureOr<void> splashRegCheckingEvent(
       SplashRegCheckingEvent event, Emitter<SplashscreenState> emit) async {
+    await Future.delayed(const Duration(seconds: 2));
     var token = await SharedPref.getToken();
     if (token == null) {
       emit(SplashScreenNaviagateState(route: 'reg'));

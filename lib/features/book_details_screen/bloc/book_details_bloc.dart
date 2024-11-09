@@ -21,8 +21,7 @@ class BookDetailsBloc extends Bloc<BookDetailsEvent, BookDetailsState> {
       BookAddRatingEvent event, Emitter<BookDetailsState> emit) async {
     log('event called');
     try {
-      await BooksRepository().addRating(book.id, event.rating);
-      book = await BooksRepository().getBookById(book.id);
+      book = await BooksRepository().addRating(book, event.rating);
       emit(BookReviewAddedState());
     } on SocketException {
       emit(BookDetailsErrorState(

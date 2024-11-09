@@ -5,7 +5,6 @@ import 'package:books/core/utils/avg_rating.dart';
 import 'package:books/data/datamodels/book_model.dart';
 import 'package:books/features/book_details_screen/widgets/custom_bottom_sheet.dart';
 import 'package:books/features/home_screen/bloc/home_screen_bloc.dart';
-import 'package:books/features/home_screen/widgets/book_grid.dart';
 import 'package:books/features/register_screen/widgets/custom_snackbar.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
@@ -53,7 +52,7 @@ class BookDetailPage extends StatelessWidget {
                 child: ListView(
                   children: [
                     _buildProductImage(screenHeight, screenWidth),
-                    _buildProductDetails(),
+                    _buildProductDetails(bookDetailsBloc),
                     _buildProductDescription(),
                   ],
                 ),
@@ -83,7 +82,7 @@ class BookDetailPage extends StatelessWidget {
     );
   }
 
-  Widget _buildProductDetails() {
+  Widget _buildProductDetails(BookDetailsBloc bookDetailsBloc) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 16),
       child: Row(
@@ -92,7 +91,7 @@ class BookDetailPage extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                _buildProductTitle(),
+                _buildProductTitle(bookDetailsBloc),
                 _buildAuthorName(),
                 const SizedBox(height: 5.0),
                 _buildPublishedDate(),
@@ -105,7 +104,7 @@ class BookDetailPage extends StatelessWidget {
     );
   }
 
-  Widget _buildProductTitle() {
+  Widget _buildProductTitle(BookDetailsBloc bookDetailsBloc) {
     return Row(
       children: [
         Expanded(
@@ -118,7 +117,7 @@ class BookDetailPage extends StatelessWidget {
             overflow: TextOverflow.ellipsis,
           ),
         ),
-        _buildRatingWidget(),
+        _buildRatingWidget(bookDetailsBloc),
       ],
     );
   }
@@ -146,7 +145,7 @@ class BookDetailPage extends StatelessWidget {
   }
 
 //! RATING
-  Widget _buildRatingWidget() {
+  Widget _buildRatingWidget(BookDetailsBloc bookDetailsBloc) {
     return Container(
       decoration: BoxDecoration(
         border: Border.all(width: 2, color: Colors.grey.withOpacity(0.2)),
@@ -162,7 +161,7 @@ class BookDetailPage extends StatelessWidget {
               size: 15,
             ),
             Text(
-              getAvgRating(book.rating),
+              getAvgRating(bookDetailsBloc.book.rating),
               style: const TextStyle(
                 fontSize: 12.0,
                 color: Colors.black,
