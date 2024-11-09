@@ -11,10 +11,10 @@ class AppTheme {
     colorScheme: lightColorScheme,
     primaryColor: lightColorScheme.primary,
     textTheme: AppTextStyles.textTheme,
-    appBarTheme: AppBarTheme(
-      color: const Color.fromARGB(255, 255, 255, 255),
+    appBarTheme: const AppBarTheme(
+      color: Color.fromARGB(255, 255, 255, 255),
       elevation: 0,
-      iconTheme: IconThemeData(color: lightColorScheme.onPrimary),
+      iconTheme: IconThemeData(color: Color.fromARGB(255, 0, 0, 0)),
       titleTextStyle: AppTextStyles.title,
     ),
     elevatedButtonTheme: ElevatedButtonThemeData(
@@ -75,10 +75,10 @@ class AppTheme {
           )),
           backgroundColor: WidgetStatePropertyAll(lightColorScheme.primary)),
     ),
-    appBarTheme: AppBarTheme(
-      color: const Color.fromARGB(255, 0, 0, 0),
+    appBarTheme: const AppBarTheme(
+      color: Color.fromARGB(255, 0, 0, 0),
       elevation: 0,
-      iconTheme: IconThemeData(color: darkColorScheme.onPrimary),
+      iconTheme: IconThemeData(color: Color.fromARGB(255, 255, 255, 255)),
       titleTextStyle: AppTextStyles.title,
     ),
     buttonTheme: ButtonThemeData(

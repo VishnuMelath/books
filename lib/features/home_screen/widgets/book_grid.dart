@@ -1,11 +1,20 @@
+import 'package:books/core/utils/avg_rating.dart';
 import 'package:books/data/datamodels/book_model.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:shimmer/shimmer.dart';
 
-Widget bookGrid(BookModel book) {
+import '../../book_details_screen/pages/book_details_page.dart';
+
+Widget bookGrid(BuildContext context, BookModel book) {
   return InkWell(
-    onTap: () {},
+    onTap: () {
+      Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => BookDetailPage(book: book),
+          ));
+    },
     child: Container(
       padding: const EdgeInsets.all(12),
       decoration:
@@ -51,7 +60,7 @@ Widget bookGrid(BookModel book) {
                 size: 11,
               ),
               Text(
-                book.rating.toString(),
+                getAvgRating(book.rating),
                 style:
                     const TextStyle(fontSize: 10, fontWeight: FontWeight.w400),
               ),

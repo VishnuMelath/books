@@ -1,5 +1,9 @@
+import 'package:books/features/home_screen/pages/authors_list_screen.dart';
 import 'package:books/features/home_screen/pages/books_list_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+
+import '../bloc/home_screen_bloc.dart';
 
 class BottomNavScreen extends StatefulWidget {
   const BottomNavScreen({super.key});
@@ -11,9 +15,17 @@ class BottomNavScreen extends StatefulWidget {
 class _BottomNavScreenState extends State<BottomNavScreen> {
   int selectedIndex = 0;
   @override
+  void initState() {
+    context.read<HomeScreenBloc>().add(HomeScreenBooksLoadingEvent());
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: const BooksListScreen(),
+      body: selectedIndex == 0
+          ? const BooksListScreen()
+          : const AuthorsListScreen(),
       bottomNavigationBar: BottomNavigationBar(
           currentIndex: selectedIndex,
           selectedFontSize: 10,

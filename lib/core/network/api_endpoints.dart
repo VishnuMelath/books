@@ -4,5 +4,8 @@ class ApiEndpoints {
 
   //end points
   static const String getUserRegisterEndPoint = "$baseUrl/auth/register";
-  static String getFeatureById(int id) => "$baseUrl/feature/$id";
+  static String getBookEndPoint = "$baseUrl/books?page=1&limit=100";
+  static String getAuthorsListEndPoint = "$baseUrl/authors";
+  static String addRatingEndPoint(String bookID) =>
+      "$baseUrl/books/$bookID?ratings:add";
 }

@@ -16,7 +16,7 @@ class AppTextStyles {
   static const TextStyle title = TextStyle(
     fontSize: 20.0,
     fontWeight: FontWeight.w600,
-    color: Colors.white,
+    color: Color.fromARGB(255, 0, 0, 0),
   );
 
   static const TextTheme textTheme = TextTheme(

@@ -27,3 +27,21 @@ const darkColorScheme = ColorScheme(
   onError: Color(0xFF000000),
   brightness: Brightness.dark,
 );
+
+List<Color> lightColorsList = [
+  Colors.pink[50]!,
+  Colors.red[50]!,
+  Colors.purple[50]!,
+  Colors.green[50]!,
+  Colors.blue[50]!,
+  Colors.red[50]!
+];
+
+List<Color> denseColorsList = [
+  Colors.pink,
+  Colors.red,
+  Colors.purple,
+  Colors.green,
+  Colors.blue,
+  Colors.red
+];
