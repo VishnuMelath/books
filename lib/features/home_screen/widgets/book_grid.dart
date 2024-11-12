@@ -21,17 +21,20 @@ Widget bookGrid(BuildContext context, BookModel book) {
               child: Center(
                   child: Padding(
             padding: const EdgeInsets.only(bottom: 15.0),
-            child: CachedNetworkImage(
-                placeholder: (context, url) {
-                  return Shimmer.fromColors(
-                      baseColor: Colors.orange[50]!,
-                      highlightColor: Colors.orange[100]!,
-                      child: const SizedBox(
-                        width: double.infinity,
-                        height: double.infinity,
-                      ));
-                },
-                imageUrl: book.coverPictureURL),
+            child: Hero(
+              tag: book,
+              child: CachedNetworkImage(
+                  placeholder: (context, url) {
+                    return Shimmer.fromColors(
+                        baseColor: Colors.orange[50]!,
+                        highlightColor: Colors.orange[100]!,
+                        child: const SizedBox(
+                          width: double.infinity,
+                          height: double.infinity,
+                        ));
+                  },
+                  imageUrl: book.coverPictureURL),
+            ),
           ))),
           Text(
             book.title,

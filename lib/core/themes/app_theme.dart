@@ -12,6 +12,7 @@ class AppTheme {
     primaryColor: lightColorScheme.primary,
     textTheme: AppTextStyles.textTheme,
     appBarTheme: const AppBarTheme(
+      surfaceTintColor: Colors.transparent,
       color: Color.fromARGB(255, 255, 255, 255),
       elevation: 0,
       iconTheme: IconThemeData(color: Color.fromARGB(255, 0, 0, 0)),

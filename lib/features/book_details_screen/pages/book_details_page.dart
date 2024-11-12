@@ -75,9 +75,12 @@ class BookDetailPage extends StatelessWidget {
       width: screenWidth,
       color: lightColorsList[Random().nextInt(lightColorsList.length)],
       padding: const EdgeInsets.all(20),
-      child: CachedNetworkImage(
-        imageUrl: book.coverPictureURL,
-        fit: BoxFit.fitHeight,
+      child: Hero(
+        tag: book,
+        child: CachedNetworkImage(
+          imageUrl: book.coverPictureURL,
+          fit: BoxFit.fitHeight,
+        ),
       ),
     );
   }
