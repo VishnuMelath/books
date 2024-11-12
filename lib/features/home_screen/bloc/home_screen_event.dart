@@ -12,3 +12,5 @@ class HomeScreenSearchEvent extends HomeScreenEvent {
 
   HomeScreenSearchEvent({required this.searchQuery});
 }
+
+class HomePaginationEvent extends HomeScreenEvent {}

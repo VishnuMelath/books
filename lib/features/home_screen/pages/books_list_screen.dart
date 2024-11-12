@@ -45,19 +45,29 @@ class BooksListScreen extends StatelessWidget {
                 ));
               }
               return Expanded(
-                child: GridView.builder(
-                  controller: controller,
-                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                      childAspectRatio: .7,
-                      crossAxisCount: MediaQuery.sizeOf(context).width >
-                              MediaQuery.sizeOf(context).height
-                          ? 5
-                          : 2),
-                  itemCount: homeScreenBloc.showingBooks.length,
-                  itemBuilder: (context, index) {
-                    return bookGrid(
-                        context, homeScreenBloc.showingBooks[index]);
-                  },
+                child: Column(
+                  children: [
+                    Expanded(
+                      child: GridView.builder(
+                        controller: controller,
+                        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                            childAspectRatio: .7,
+                            crossAxisCount: MediaQuery.sizeOf(context).width >
+                                    MediaQuery.sizeOf(context).height
+                                ? 5
+                                : 2),
+                        itemCount: homeScreenBloc.showingBooks.length + 2,
+                        itemBuilder: (context, index) {
+                          if (index >= homeScreenBloc.showingBooks.length) {
+                            homeScreenBloc.add(HomePaginationEvent());
+                            return loadingGrid();
+                          }
+                          return bookGrid(
+                              context, homeScreenBloc.showingBooks[index]);
+                        },
+                      ),
+                    ),
+                  ],
                 ),
               );
             },

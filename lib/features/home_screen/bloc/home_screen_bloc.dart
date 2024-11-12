@@ -19,6 +19,7 @@ class HomeScreenBloc extends Bloc<HomeScreenEvent, HomeScreenState> {
   HomeScreenBloc() : super(HomeScreenInitial()) {
     on<HomeScreenBooksLoadingEvent>(homeScreenBooksLoadingEvent);
     on<HomeScreenSearchEvent>(homeScreenSearchEvent);
+    on<HomePaginationEvent>(homePaginationEvent);
   }
 
   FutureOr<void> homeScreenBooksLoadingEvent(
@@ -58,6 +59,14 @@ class HomeScreenBloc extends Bloc<HomeScreenEvent, HomeScreenState> {
             .contains(event.searchQuery.toLowerCase()),
       )
     ];
+    emit(HomeScreenBooksLoadedState());
+  }
+
+  FutureOr<void> homePaginationEvent(
+      HomePaginationEvent event, Emitter<HomeScreenState> emit) async {
+    //just to show pagination effect since the api doesnt have that much of data.
+    await Future.delayed(const Duration(seconds: 1));
+    showingBooks.addAll(showingBooks.take(8));
     emit(HomeScreenBooksLoadedState());
   }
 }

@@ -1,5 +1,3 @@
-// core/theme/text_styles.dart
-
 import 'package:flutter/material.dart';
 
 class AppTextStyles {

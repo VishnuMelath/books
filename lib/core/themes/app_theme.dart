@@ -1,5 +1,3 @@
-// core/theme/app_theme.dart
-
 import 'package:books/core/themes/color_scemes.dart';
 import 'package:books/core/themes/text_styles.dart';
 import 'package:flutter/material.dart';
